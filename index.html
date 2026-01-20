@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Attendance Points Calculator</title>
     <style>
         * {
@@ -10,14 +10,14 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #7BAFD4 0%, #4B9CD3 100%);
             min-height: 100vh;
             padding: 20px;
         }
-        
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -26,19 +26,19 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             padding: 40px;
         }
-        
+
         h1 {
             color: #36454F;
             margin-bottom: 10px;
             font-size: 2em;
         }
-        
+
         .subtitle {
             color: #36454F;
             margin-bottom: 30px;
             opacity: 0.8;
         }
-        
+
         .upload-section {
             background: #f7fafc;
             border: 2px dashed #cbd5e0;
@@ -48,21 +48,21 @@
             margin-bottom: 20px;
             transition: all 0.3s;
         }
-        
+
         .upload-section:hover {
             border-color: #7BAFD4;
             background: #edf2f7;
         }
-        
+
         .file-input-wrapper {
             position: relative;
             display: inline-block;
         }
-        
+
         input[type="file"] {
             display: none;
         }
-        
+
         .btn {
             background: #7BAFD4;
             color: white;
@@ -75,29 +75,29 @@
             transition: all 0.3s;
             display: inline-block;
         }
-        
+
         .btn:hover {
             background: #4B9CD3;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(123, 175, 212, 0.4);
         }
-        
+
         .btn-secondary {
             background: #36454F;
             margin-left: 10px;
         }
-        
+
         .btn-secondary:hover {
             background: #2a3439;
         }
-        
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin: 30px 0;
         }
-        
+
         .stat-card {
             background: linear-gradient(135deg, #7BAFD4 0%, #4B9CD3 100%);
             color: white;
@@ -105,18 +105,18 @@
             border-radius: 12px;
             text-align: center;
         }
-        
+
         .stat-label {
             font-size: 14px;
             opacity: 0.9;
             margin-bottom: 8px;
         }
-        
+
         .stat-value {
             font-size: 32px;
             font-weight: bold;
         }
-        
+
         .filters {
             background: #f7fafc;
             padding: 20px;
@@ -126,19 +126,19 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
         }
-        
+
         .filter-group {
             display: flex;
             flex-direction: column;
         }
-        
+
         label {
             font-weight: 600;
             color: #36454F;
             margin-bottom: 5px;
             font-size: 14px;
         }
-        
+
         input[type="number"],
         input[type="text"] {
             padding: 10px;
@@ -147,13 +147,13 @@
             font-size: 14px;
             transition: border-color 0.3s;
         }
-        
+
         input[type="number"]:focus,
         input[type="text"]:focus {
             outline: none;
             border-color: #7BAFD4;
         }
-        
+
         .warning {
             background: #fed7d7;
             color: #742a2a;
@@ -162,7 +162,7 @@
             margin: 20px 0;
             border-left: 4px solid #fc8181;
         }
-        
+
         .info {
             background: #bee3f8;
             color: #2c5282;
@@ -171,7 +171,7 @@
             margin: 20px 0;
             border-left: 4px solid #4299e1;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -181,25 +181,25 @@
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        
+
         thead {
             background: #7BAFD4;
             color: white;
         }
-        
+
         th, td {
             padding: 15px;
             text-align: left;
         }
-        
+
         tbody tr:nth-child(even) {
             background: #f7fafc;
         }
-        
+
         tbody tr:hover {
             background: #edf2f7;
         }
-        
+
         .section-title {
             font-size: 1.5em;
             color: #36454F;
@@ -208,17 +208,17 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .hidden {
             display: none;
         }
-        
+
         .codes-table-wrapper {
             max-height: 300px;
             overflow-y: auto;
             margin-top: 10px;
         }
-        
+
         .expander {
             background: #f7fafc;
             border: 1px solid #e2e8f0;
@@ -228,11 +228,11 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        
+
         .expander:hover {
             background: #edf2f7;
         }
-        
+
         .expander-title {
             font-weight: 600;
             color: #36454F;
@@ -240,12 +240,12 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .expander-content {
             margin-top: 15px;
             display: none;
         }
-        
+
         .expander.active .expander-content {
             display: block;
         }
@@ -255,19 +255,19 @@
     <div class="container">
         <h1>📊 Attendance Points Calculator</h1>
         <p class="subtitle">Upload a CSV file with columns: <strong>Name</strong> and <strong>Attendance Code</strong></p>
-        
+
         <div class="upload-section">
             <div class="file-input-wrapper">
                 <label for="csvFile" class="btn">📤 Upload CSV File</label>
-                <input type="file" id="csvFile" accept=".csv">
+                <input type="file" id="csvFile" accept=".csv" />
             </div>
-            <button class="btn btn-secondary" onclick="downloadSample()">📄 Download Sample CSV</button>
+            <button class="btn btn-secondary" type="button" id="downloadSampleBtn">📄 Download Sample CSV</button>
         </div>
-        
+
         <div id="results" class="hidden">
             <div id="warning"></div>
             <div id="info"></div>
-            
+
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-label">Total Students</div>
@@ -279,29 +279,29 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Highest Points</div>
-                    <div class="stat-value" id="maxPoints">0</div>
+                    <div class="stat-value" id="maxPointsStat">0</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Lowest Points</div>
-                    <div class="stat-value" id="minPoints">0</div>
+                    <div class="stat-value" id="minPointsStat">0</div>
                 </div>
             </div>
-            
+
             <div class="filters">
                 <div class="filter-group">
-                    <label for="minPoints">Minimum Points</label>
-                    <input type="number" id="minPoints" value="0" min="0" step="5">
+                    <label for="minPointsFilter">Minimum Points</label>
+                    <input type="number" id="minPointsFilter" value="0" min="0" step="1" />
                 </div>
                 <div class="filter-group">
-                    <label for="maxPoints">Maximum Points</label>
-                    <input type="number" id="maxPointsFilter" value="1000" min="0" step="5">
+                    <label for="maxPointsFilter">Maximum Points</label>
+                    <input type="number" id="maxPointsFilter" value="1000" min="0" step="1" />
                 </div>
                 <div class="filter-group">
                     <label for="searchName">🔎 Search by Name</label>
-                    <input type="text" id="searchName" placeholder="Enter student name...">
+                    <input type="text" id="searchName" placeholder="Enter student name..." />
                 </div>
             </div>
-            
+
             <h2 class="section-title">📋 Preview of Assigned Points</h2>
             <div style="overflow-x: auto;">
                 <table id="detailTable">
@@ -315,7 +315,7 @@
                     <tbody id="detailTableBody"></tbody>
                 </table>
             </div>
-            
+
             <h2 class="section-title">🏆 Total Points per Student</h2>
             <div style="overflow-x: auto;">
                 <table id="totalsTable">
@@ -329,10 +329,10 @@
                 </table>
             </div>
             <p style="color: #718096; margin-top: 10px;">Showing <span id="filteredCount">0</span> of <span id="totalCount">0</span> students</p>
-            
-            <button class="btn" onclick="downloadResults()" style="margin-top: 20px;">📥 Download Results as CSV</button>
+
+            <button class="btn" id="downloadResultsBtn" style="margin-top: 20px;">📥 Download Results as CSV</button>
         </div>
-        
+
         <div id="instructions" class="expander" onclick="toggleExpander(this)">
             <div class="expander-title">ℹ️ Expected CSV Format & Available Codes</div>
             <div class="expander-content">
@@ -341,9 +341,9 @@
 "Johnson, Alice Marie",P
 "Smith, Bob",AU
 "Johnson, Alice Marie",AEX</pre>
-                
+
                 <p style="margin-top: 15px; color: #36454F;"><strong>Note:</strong> Names with commas (like "Last, First Middle") should be wrapped in quotes.</p>
-                
+
                 <p style="margin: 20px 0 10px 0;"><strong>Available Attendance Codes:</strong></p>
                 <div class="codes-table-wrapper">
                     <table>
@@ -360,7 +360,11 @@
         </div>
     </div>
 
+    <!-- PapaParse for robust CSV parsing -->
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+
     <script>
+        // Points mapping
         const POINTS = {
             "": 10, "P": 10,
             "AU": 0, "BUS": 0, "Y": 0,
@@ -375,70 +379,78 @@
             "RO": 5, "K1": 5, "CRT": 5, "OSF": 5, "GR": 5, "NM": 5
         };
 
-        let rawData = [];
-        let totalsData = [];
-        let allHistoricalData = [];
+        // Application data
+        let rawData = [];            // flat list of individual attendance rows (Name, Code, Points)
+        let totalsData = [];         // aggregated totals per student [{Name, Points}]
+        let allHistoricalData = [];  // persisted historical data (array of rows like rawData)
 
-        // Load saved data on page load
+        // --- Persistent storage (uses localStorage) ---
         async function loadSavedData() {
             try {
-                const result = await window.storage.get('attendance-historical-data');
-                if (result && result.value) {
-                    allHistoricalData = JSON.parse(result.value);
-                    if (allHistoricalData.length > 0) {
+                const saved = localStorage.getItem('attendance-historical-data');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        allHistoricalData = parsed;
                         recalculateTotals();
                         document.getElementById('results').classList.remove('hidden');
-                        document.getElementById('savedDataInfo').classList.remove('hidden');
                     }
                 }
-            } catch (error) {
-                console.log('No saved data found or error loading:', error);
+            } catch (err) {
+                console.warn('Could not load saved data:', err);
             }
         }
 
-        // Save data to persistent storage
         async function saveData() {
             try {
-                await window.storage.set('attendance-historical-data', JSON.stringify(allHistoricalData));
+                localStorage.setItem('attendance-historical-data', JSON.stringify(allHistoricalData));
                 return true;
-            } catch (error) {
-                console.error('Error saving data:', error);
-                alert('Error saving data. Please try again.');
+            } catch (err) {
+                console.error('Error saving data:', err);
                 return false;
             }
         }
 
-        // Recalculate totals from all historical data
+        // Recalculate totals from allHistoricalData and update displays
         function recalculateTotals() {
             const totalsMap = {};
-            
             allHistoricalData.forEach(row => {
-                if (!totalsMap[row.Name]) {
-                    totalsMap[row.Name] = 0;
-                }
-                totalsMap[row.Name] += row.Points;
+                const name = row.Name || 'Unknown';
+                const pts = Number(row.Points) || 0;
+                if (!totalsMap[name]) totalsMap[name] = 0;
+                totalsMap[name] += pts;
             });
-            
+
             totalsData = Object.entries(totalsMap)
                 .map(([name, points]) => ({ Name: name, Points: points }))
                 .sort((a, b) => b.Points - a.Points);
-            
-            rawData = allHistoricalData;
+
+            // Use historical data for detail view
+            rawData = allHistoricalData.slice();
+
             updateStats();
             displayDetailTable();
             displayTotalsTable();
         }
 
-        // Populate codes table
+        // Populate codes table (safe DOM creation)
         function populateCodesTable() {
             const tbody = document.getElementById('codesTableBody');
+            tbody.innerHTML = ''; // clear
             const codes = Object.entries(POINTS)
                 .filter(([code]) => code !== "")
                 .sort((a, b) => b[1] - a[1]);
-            
-            tbody.innerHTML = codes.map(([code, points]) => 
-                `<tr><td>${code}</td><td>${points}</td></tr>`
-            ).join('');
+
+            for (const [code, pts] of codes) {
+                const tr = document.createElement('tr');
+                const tdCode = document.createElement('td');
+                tdCode.textContent = code;
+                const tdPts = document.createElement('td');
+                tdPts.textContent = String(pts);
+                tr.appendChild(tdCode);
+                tr.appendChild(tdPts);
+                tbody.appendChild(tr);
+            }
         }
 
         // Toggle expander
@@ -454,109 +466,104 @@
 "Johnson, Alice Marie",AEX
 "Brown, Charlie",TEX
 "Smith, Bob",M`;
-            
+
             const blob = new Blob([sample], { type: 'text/csv' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
             a.download = 'sample_attendance.csv';
+            document.body.appendChild(a);
             a.click();
-            URL.revokeObjectURL(url);
+            // revoke after slight delay to ensure download starts
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+                a.remove();
+            }, 500);
         }
 
-        // Parse CSV
+        // Robust CSV parsing using PapaParse
         function parseCSV(text) {
-            const lines = text.trim().split('\n');
-            const data = [];
-            
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i].trim();
-                if (!line) continue;
-                
-                // Parse CSV row handling quoted fields with commas
-                const row = [];
-                let currentField = '';
-                let inQuotes = false;
-                
-                for (let j = 0; j < line.length; j++) {
-                    const char = line[j];
-                    
-                    if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        row.push(currentField.trim());
-                        currentField = '';
-                    } else {
-                        currentField += char;
-                    }
-                }
-                row.push(currentField.trim());
-                
-                // Skip header row or process data
-                if (i === 0) {
-                    continue; // Skip header
-                }
-                
-                if (row.length >= 2) {
-                    data.push({
-                        Name: row[0] || 'Unknown',
-                        Code: (row[1] || '').toUpperCase()
+            // First try header:true parsing (most CSVs will have headers)
+            const withHeader = Papa.parse(text, { header: true, skipEmptyLines: true, transformHeader: h => (h || '').trim() });
+            const fields = withHeader.meta && withHeader.meta.fields ? withHeader.meta.fields.map(f => f && f.trim()) : [];
+
+            let nameKey = fields.find(f => f && f.toLowerCase() === 'name');
+            let codeKey = fields.find(f => f && f.toLowerCase().includes('code'));
+
+            let rows = [];
+
+            if (nameKey && codeKey) {
+                for (const row of withHeader.data) {
+                    const rawName = row[nameKey];
+                    const rawCode = row[codeKey];
+                    if ((rawName || '').toString().trim() === '' && (rawCode || '').toString().trim() === '') continue;
+                    rows.push({
+                        Name: (rawName || 'Unknown').toString().trim(),
+                        Code: ((rawCode || '') + '').toUpperCase().trim()
                     });
                 }
+                return rows;
             }
-            
-            return data;
+
+            // Fallback: parse without header and use first two columns
+            const withoutHeader = Papa.parse(text, { header: false, skipEmptyLines: true });
+            for (let i = 0; i < withoutHeader.data.length; i++) {
+                // Skip header row if it looks like header (contains the words 'name' and 'code')
+                if (i === 0) {
+                    const firstRow = withoutHeader.data[0].map(c => (c || '').toString().toLowerCase());
+                    if (firstRow.some(c => c.includes('name')) && firstRow.some(c => c.includes('code'))) {
+                        continue;
+                    }
+                }
+                const row = withoutHeader.data[i];
+                if (!row || row.length === 0) continue;
+                const nameVal = row[0] || 'Unknown';
+                const codeVal = row[1] || '';
+                rows.push({
+                    Name: (nameVal || 'Unknown').toString().trim(),
+                    Code: ((codeVal || '') + '').toUpperCase().trim()
+                });
+            }
+            return rows;
         }
 
-        // Process data
+        // Process uploaded data (assign points, show warnings, persist)
         function processData(data) {
-            // Assign points
-            rawData = data.map(row => ({
-                ...row,
-                Points: POINTS[row.Code] !== undefined ? POINTS[row.Code] : 0
-            }));
-            
+            // assign points for each row
+            const processed = data.map(row => {
+                const pts = (row.Code && POINTS[row.Code] !== undefined) ? POINTS[row.Code] : 0;
+                return {
+                    Name: row.Name || 'Unknown',
+                    Code: row.Code || '',
+                    Points: pts
+                };
+            });
+
             // Check for unknown codes
             const unknownCodes = [...new Set(
-                rawData
-                    .filter(row => row.Code && POINTS[row.Code] === undefined)
-                    .map(row => row.Code)
+                processed
+                    .filter(r => r.Code && POINTS[r.Code] === undefined)
+                    .map(r => r.Code)
             )];
-            
+
+            const warningContainer = document.getElementById('warning');
+            warningContainer.innerHTML = '';
             if (unknownCodes.length > 0) {
-                document.getElementById('warning').innerHTML = 
-                    `<div class="warning">⚠️ Unknown codes found (assigned 0 points): ${unknownCodes.join(', ')}</div>`;
-            } else {
-                document.getElementById('warning').innerHTML = '';
+                const d = document.createElement('div');
+                d.className = 'warning';
+                d.textContent = '⚠️ Unknown codes found (assigned 0 points): ' + unknownCodes.join(', ');
+                warningContainer.appendChild(d);
             }
-            
-            // Aggregate totals
-            const totalsMap = {};
-            rawData.forEach(row => {
-                if (!totalsMap[row.Name]) {
-                    totalsMap[row.Name] = 0;
-                }
-                totalsMap[row.Name] += row.Points;
-            });
-            
-            totalsData = Object.entries(totalsMap)
-                .map(([name, points]) => ({ Name: name, Points: points }))
-                .sort((a, b) => b.Points - a.Points);
-            
-            // Update stats
-            updateStats();
-            
-            // Display tables
-            displayDetailTable();
-            displayTotalsTable();
-            
-            // Show results
+
+            // Append to historical data and persist
+            allHistoricalData = allHistoricalData.concat(processed);
+            saveData().catch(() => {}); // best-effort
+
+            // Recalculate totals & update displays based on historical data
+            recalculateTotals();
+
+            // Show results area
             document.getElementById('results').classList.remove('hidden');
-            
-            // Setup filters
-            document.getElementById('minPoints').addEventListener('input', applyFilters);
-            document.getElementById('maxPointsFilter').addEventListener('input', applyFilters);
-            document.getElementById('searchName').addEventListener('input', applyFilters);
         }
 
         // Update statistics
@@ -566,93 +573,149 @@
             const avg = total > 0 ? (points.reduce((a, b) => a + b, 0) / total).toFixed(1) : 0;
             const max = total > 0 ? Math.max(...points) : 0;
             const min = total > 0 ? Math.min(...points) : 0;
-            
-            document.getElementById('totalStudents').textContent = total;
-            document.getElementById('avgPoints').textContent = avg;
-            document.getElementById('maxPoints').textContent = max;
-            document.getElementById('minPoints').textContent = min;
-            
-            document.getElementById('maxPointsFilter').value = max;
+
+            document.getElementById('totalStudents').textContent = String(total);
+            document.getElementById('avgPoints').textContent = String(avg);
+            document.getElementById('maxPointsStat').textContent = String(max);
+            document.getElementById('minPointsStat').textContent = String(min);
+
+            // Optionally update the filter max to the observed max so the user can easily filter
+            const maxFilter = document.getElementById('maxPointsFilter');
+            if (maxFilter) {
+                // only update if current max is larger than user-set value to avoid surprising behavior
+                const current = Number(maxFilter.value) || 0;
+                if (max > current) {
+                    maxFilter.value = String(max);
+                }
+            }
         }
 
-        // Display detail table
+        // Display detail table (safe DOM creation)
         function displayDetailTable() {
             const tbody = document.getElementById('detailTableBody');
-            tbody.innerHTML = rawData.map(row => 
-                `<tr>
-                    <td>${row.Name}</td>
-                    <td>${row.Code}</td>
-                    <td>${row.Points}</td>
-                </tr>`
-            ).join('');
+            tbody.innerHTML = '';
+            for (const row of rawData) {
+                const tr = document.createElement('tr');
+                const tdName = document.createElement('td');
+                tdName.textContent = row.Name;
+                const tdCode = document.createElement('td');
+                tdCode.textContent = row.Code;
+                const tdPts = document.createElement('td');
+                tdPts.textContent = String(row.Points);
+                tr.appendChild(tdName);
+                tr.appendChild(tdCode);
+                tr.appendChild(tdPts);
+                tbody.appendChild(tr);
+            }
         }
 
-        // Display totals table
+        // Display totals table (safe DOM creation)
         function displayTotalsTable(filtered = totalsData) {
             const tbody = document.getElementById('totalsTableBody');
-            tbody.innerHTML = filtered.map(row => 
-                `<tr>
-                    <td>${row.Name}</td>
-                    <td>${row.Points}</td>
-                </tr>`
-            ).join('');
-            
-            document.getElementById('filteredCount').textContent = filtered.length;
-            document.getElementById('totalCount').textContent = totalsData.length;
+            tbody.innerHTML = '';
+            for (const row of filtered) {
+                const tr = document.createElement('tr');
+                const tdName = document.createElement('td');
+                tdName.textContent = row.Name;
+                const tdPts = document.createElement('td');
+                tdPts.textContent = String(row.Points);
+                tr.appendChild(tdName);
+                tr.appendChild(tdPts);
+                tbody.appendChild(tr);
+            }
+
+            document.getElementById('filteredCount').textContent = String(filtered.length);
+            document.getElementById('totalCount').textContent = String(totalsData.length);
         }
 
-        // Apply filters
+        // Apply filters (handles 0 properly)
         function applyFilters() {
-            const minPoints = parseInt(document.getElementById('minPoints').value) || 0;
-            const maxPoints = parseInt(document.getElementById('maxPointsFilter').value) || Infinity;
-            const searchName = document.getElementById('searchName').value.toLowerCase();
-            
+            const minRaw = Number(document.getElementById('minPointsFilter').value);
+            const maxRaw = Number(document.getElementById('maxPointsFilter').value);
+            const minPoints = Number.isFinite(minRaw) ? minRaw : 0;
+            const maxPoints = Number.isFinite(maxRaw) ? maxRaw : Infinity;
+            const searchName = document.getElementById('searchName').value.trim().toLowerCase();
+
             const filtered = totalsData.filter(row => {
-                const matchesPoints = row.Points >= minPoints && row.Points <= maxPoints;
+                const matchesPoints = (row.Points >= minPoints) && (row.Points <= maxPoints);
                 const matchesName = !searchName || row.Name.toLowerCase().includes(searchName);
                 return matchesPoints && matchesName;
             });
-            
+
             displayTotalsTable(filtered);
         }
 
-        // Download results
+        // Download aggregated results as CSV
         function downloadResults() {
-            const csv = 'Name,Points\n' + 
-                totalsData.map(row => `${row.Name},${row.Points}`).join('\n');
-            
+            const csvRows = [['Name', 'Points']];
+            for (const row of totalsData) {
+                // wrap names that contain commas in quotes
+                const name = row.Name.includes(',') ? `"${row.Name.replace(/"/g, '""')}"` : row.Name.replace(/"/g, '""');
+                csvRows.push([name, String(row.Points)]);
+            }
+            const csv = csvRows.map(r => r.join(',')).join('\n');
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
             a.download = 'attendance_points.csv';
+            document.body.appendChild(a);
             a.click();
-            URL.revokeObjectURL(url);
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+                a.remove();
+            }, 500);
         }
 
-        // File upload handler
-        document.getElementById('csvFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    try {
-                        const data = parseCSV(event.target.result);
-                        if (data.length === 0) {
-                            alert('No valid data found in CSV file.');
-                            return;
-                        }
-                        processData(data);
-                    } catch (error) {
-                        alert('Error processing CSV: ' + error.message);
+        // File upload handler (uses robust parser)
+        function handleFileUpload(file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const text = event.target.result;
+                    const data = parseCSV(text);
+                    if (!data || data.length === 0) {
+                        alert('No valid data found in CSV file.');
+                        return;
                     }
-                };
-                reader.readAsText(file);
-            }
-        });
+                    processData(data);
+                } catch (error) {
+                    console.error('Error processing CSV:', error);
+                    alert('Error processing CSV: ' + (error && error.message ? error.message : error));
+                }
+            };
+            reader.readAsText(file);
+        }
 
-        // Initialize
-        populateCodesTable();
+        // Initialization: wire controls once
+        function init() {
+            populateCodesTable();
+            loadSavedData();
+
+            // Setup filter listeners only once
+            document.getElementById('minPointsFilter').addEventListener('input', applyFilters);
+            document.getElementById('maxPointsFilter').addEventListener('input', applyFilters);
+            document.getElementById('searchName').addEventListener('input', applyFilters);
+
+            // File input listener
+            document.getElementById('csvFile').addEventListener('change', function(e) {
+                const file = e.target.files && e.target.files[0];
+                if (file) {
+                    handleFileUpload(file);
+                    // clear the input so re-uploading the same file triggers change event again if needed
+                    e.target.value = '';
+                }
+            });
+
+            // Download sample button
+            document.getElementById('downloadSampleBtn').addEventListener('click', downloadSample);
+
+            // Download results
+            document.getElementById('downloadResultsBtn').addEventListener('click', downloadResults);
+        }
+
+        // Run init when DOM is available
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
